@@ -86,8 +86,14 @@ int main()
 {
     srand((unsigned)time(NULL));
 
-    for (int i = 0; i < 100; i++)
+    int quantidade = 0;
+    std::cout << "quantos registros vc quer gerar? : ";
+    std::cin >> quantidade;
+
+    for (int i = 0; i < quantidade; i++)
     {
         std::cout << "nome: " << gerar_nome() << " " << gerar_sobrenome() << " cpf: " << gerar_cpf() << " data nascimento : " << gerar_data_nascimento() << "\n";
     }
+
+    std::cin >> quantidade;
 }
