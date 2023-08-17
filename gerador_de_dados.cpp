@@ -133,7 +133,9 @@ int main()
         std::string sobrenome = gerar_sobrenome();
         std::string email = gerar_email(nome, sobrenome);
 
-        std::cout << "nome: " << nome << " " << sobrenome << " email : " << email << " cpf: " << gerar_cpf() << " data nascimento : " << gerar_data_nascimento() << "\n";
+        std::cout << "(\"" << nome << "\",\"" << sobrenome << "\"," << gerar_cpf() << ",\"ENDERECO\",\"" << email << "\"," << gerar_data_nascimento() << "),\n";
+
+        //("haru","lourenco",19516113737,"rua da cruz , barreto , niteroi RJ" , "joao.sobreira.vieira@gmail.com" , 2000-08-20),
     }
 
     std::cin >> quantidade;
