@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 std::string gerar_cpf()
 {
@@ -54,6 +55,42 @@ std::string gerar_sobrenome()
     return sobrenome;
 }
 
+std::string gerar_email(std::string nome, std::string sobrenome)
+{
+
+    std::string email = nome + '.' + sobrenome + '@';
+    std::replace(email.begin(), email.end(), ' ', '.');
+
+    switch (rand() % 8)
+    {
+    case 0:
+        email += "gmail.com";
+        break;
+    case 1:
+        email += "outlook.com";
+        break;
+    case 2:
+        email += "hotmail.com";
+        break;
+    case 3:
+        email += "live.com";
+        break;
+    case 4:
+        email += "msn.com";
+        break;
+    case 5:
+        email += "yahoo.com";
+        break;
+    case 6:
+        email += "ymail.com";
+        break;
+    case 7:
+        email += "aol.com";
+        break;
+    }
+    return email;
+}
+
 std::string gerar_data_nascimento()
 {
     std::string ano = std::to_string((rand() % 74) + 1950);
@@ -92,7 +129,11 @@ int main()
 
     for (int i = 0; i < quantidade; i++)
     {
-        std::cout << "nome: " << gerar_nome() << " " << gerar_sobrenome() << " cpf: " << gerar_cpf() << " data nascimento : " << gerar_data_nascimento() << "\n";
+        std::string nome = gerar_nome();
+        std::string sobrenome = gerar_sobrenome();
+        std::string email = gerar_email(nome, sobrenome);
+
+        std::cout << "nome: " << nome << " " << sobrenome << " email : " << email << " cpf: " << gerar_cpf() << " data nascimento : " << gerar_data_nascimento() << "\n";
     }
 
     std::cin >> quantidade;
