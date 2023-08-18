@@ -35,6 +35,37 @@ std::string gerar_nome()
     return nome;
 }
 
+std::string gerar_endereco()
+{
+    std::ifstream enderecos;
+    int linha = 0;
+    std::string estado = "";
+    if (rand() % 2 == 0) // rj
+    {
+        enderecos.open("cidade_rj.txt");
+        linha = rand() % 227;
+        estado = "RJ";
+    }
+    else // sp
+    {
+        enderecos.open("cidade_sp.txt");
+        linha = rand() % 799;
+        estado = "SP";
+    }
+
+    std::string cidade = "";
+    for (int i = 0; i < linha; i++)
+    {
+        std::getline(enderecos, cidade);
+    }
+    getline(enderecos, cidade);
+
+    enderecos.close();
+
+    std::string endereco = cidade + " - " + estado;
+    return endereco;
+}
+
 std::string gerar_sobrenome()
 {
     std::ifstream sobrenomes("sobrenomes.txt");
@@ -133,7 +164,7 @@ int main()
         std::string sobrenome = gerar_sobrenome();
         std::string email = gerar_email(nome, sobrenome);
 
-        std::cout << "(\"" << nome << "\",\"" << sobrenome << "\"," << gerar_cpf() << ",\"ENDERECO\",\"" << email << "\"," << gerar_data_nascimento() << "),\n";
+        std::cout << "(\"" << nome << "\",\"" << sobrenome << "\"," << gerar_cpf() << ",\"" << gerar_endereco() << "\",\"" << email << "\"," << gerar_data_nascimento() << "),\n";
 
         //("haru","lourenco",19516113737,"rua da cruz , barreto , niteroi RJ" , "joao.sobreira.vieira@gmail.com" , 2000-08-20),
     }
